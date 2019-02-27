@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard"
+  DTS:DTSID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=den1.mssql7.gear.host;User ID=ddaileydashboard;Initial Catalog=ddaileydashboard;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYoD5fuYHmUSrg3lTDIyemQAAAAACAAAAAAAQZgAAAAEAACAAAAAb7J2S39eIMZ8ZFOKYIigYSz56akDkB4ezO8XfyuKrkwAAAAAOgAAAAAIAACAAAAASBRcSEqWHgl2PfK+2Pn+S39uJ2AC7ktdOnXtB1pLsGIAAAADLd9sNoUBNhiX0v2MtkPCG5vNZFSfIBWxNYb9DiuPgy+AWqVmRganoNGBooexZz4NCcn3/NlVYsdPGrrhJKz7io2g4ksdbwBGqRoTK0J1hA6nmqJjdvlW7MhFbse8GQ+HH1Ni4AgLvM1CrTlopSOgQ6RT+XWQuwkD1ofz+ERXeKkAAAAD8ZbrzXsq6eYrWyQPMLwUu3xdVqNMgzo+w2GpuUVxKLoQ25GRD7FiFzRTDa+XhedlWiALpqgQ03VydAPWNUboJ</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

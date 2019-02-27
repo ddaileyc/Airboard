@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DB - Data Warehouse"
+  DTS:DTSID="{888E5E66-1765-43FD-B4B6-5965E09BC578}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=den1.mssql8.gear.host;User ID=dwdashboard;Initial Catalog=dwdashboard;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYoD5fuYHmUSrg3lTDIyemQAAAAACAAAAAAAQZgAAAAEAACAAAADfrHErpXpmUpdxNn+YTY9/Gz7OMU/+ugmciiNcwXGp6wAAAAAOgAAAAAIAACAAAACsERQD5XabdkDvoUPTjEdqxpRqU0130E0Bq8m4q1hMCIAAAADrzpAUC5CbpZ62iok6L6qL2VXet+nBS7fZUnl8QiIgx2KgrxZHo6jvL0PPN3Tu5cdga1Z9s/Hq1QMoxxt5VW0ibyw3RKYiCqQP+Xn9X9O0zGSSYAnxpgpwheIxx904OLpTsVV8BKABgfmnvsiFUH9f4elDkHwilkNlIFB6VqPChUAAAAA8VBAWkOjteUrRJDA5GefbmdLCK00MrhtVeDAU6jCNaoDWCwtzdW0F+B5z1AIMReGnVr+TWUz5WluQJ1oKB7Lf</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

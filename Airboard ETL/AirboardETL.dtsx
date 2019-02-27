@@ -1,0 +1,3104 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/22/2019 4:26:56 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-HCSQMEV"
+  DTS:CreatorName="DESKTOP-HCSQMEV\ddail"
+  DTS:DTSID="{22F8758A-B154-4FFE-BAB3-C3095E8E95DE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="AirboardETL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{11F8A93F-C463-43D1-AC12-4C6AE93F2DFF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Aeropuertos.xls]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{B0DD3931-AF72-422D-B4BD-3D261BD20C47}"
+      DTS:ObjectName="Aeropuertos.xls">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ddail\Desktop\Aeropuertos.xls" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Borrar Aerolineas de la DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b66bb70f-dc86-4a09-9a4c-d4e09039c3c6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borrar Aerolineas de la DB"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2E738FAC-D244-42AE-A860-65849AB0C7CB}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="delete from dbo.Aerolinea;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Borrar Aeropuertos de la DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1024A684-A41A-4866-BCD3-6743870D71DF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borrar Aeropuertos de la DB"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2E738FAC-D244-42AE-A860-65849AB0C7CB}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="delete from dbo.Aeropuerto;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Borrar Pasajeros de la DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{78FE2E54-D0E2-468A-AAAD-3C90A33476CD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borrar Pasajeros de la DB"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2E738FAC-D244-42AE-A860-65849AB0C7CB}"
+          SQLTask:SqlStatementSource="delete from dbo.Pasajero;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Borrar Vuelos de la DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0F11C1C3-DEC3-4C0F-B2EE-1D0C487A1C84}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borrar Vuelos de la DB"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2E738FAC-D244-42AE-A860-65849AB0C7CB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.Vuelo;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Aerolineas desde Excel"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{b69e4e41-b208-4b34-832f-6d8485f1ccae}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:MaxErrorCount="5"
+      DTS:ObjectName="Cargar Aerolineas desde Excel"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar Aerolineas desde Excel\Conversion de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[ID_Aerolinea]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ID_Aerolinea"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].Columns[ID_Aerolinea]" />
+                    <inputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nombre"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].Columns[Nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ID_Aerolinea]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ID_Aerolinea]"
+                      name="Converted_ID_Aerolinea"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].Columns[ID_Aerolinea]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="45"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Nombre]"
+                      name="Converted_Nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].Columns[Nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Aerolineas"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">CSV_Aerolineas$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Connections[OleDbConnection]"
+                  connectionManagerID="{9AEC2FA4-97B7-4176-A652-B7B99D23E589}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Excel - Aerolineas]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].Columns[ID_Aerolinea]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].ExternalColumns[ID_Aerolinea]"
+                      length="255"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].Columns[ID_Aerolinea]"
+                      name="ID_Aerolinea"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].ExternalColumns[Nombre]"
+                      length="255"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].ExternalColumns[ID_Aerolinea]"
+                      dataType="wstr"
+                      length="255"
+                      name="ID_Aerolinea" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output].Columns[ID_Aerolinea]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output].Columns[ID_Aerolinea]"
+                      name="ID_Aerolinea" />
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Tabla de Aerolineas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Aerolinea]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input].Columns[Converted_ID_Aerolinea]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Converted_ID_Aerolinea"
+                      externalMetadataColumnId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[ID_Aerolinea]"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ID_Aerolinea]" />
+                    <inputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input].Columns[Converted_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="Converted_Nombre"
+                      externalMetadataColumnId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[ID_Aerolinea]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ID_Aerolinea" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Nombre" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar Aerolineas desde Excel.Paths[Data Conversion Output]"
+              endId="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Cargar Aerolineas desde Excel.Paths[Excel Source Output]"
+              endId="Package\Cargar Aerolineas desde Excel\Conversion de datos.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Cargar Aerolineas desde Excel\Excel Aerolineas.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Aeropuertos desde Excel"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8943EAF0-FA53-4EAE-BF6C-B8394265D3E7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:MaxErrorCount="5"
+      DTS:ObjectName="Cargar Aeropuertos desde Excel"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[ID_Aeropuerto]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ID_Aeropuerto"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[ID_Aeropuerto]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nombre"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ciudad"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Ciudad]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Pais]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Pais"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Pais]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ ID_Aeropuerto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ ID_Aeropuerto]"
+                      name="Converted_ ID_Aeropuerto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[ID_Aeropuerto]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Nombre]"
+                      name="Converted_ Nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Ciudad]"
+                      name="Converted_ Ciudad"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Ciudad]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Pais]"
+                      name="Converted_ Pais"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Pais]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel de Aeropuertos"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Connections[OleDbConnection]"
+                  connectionManagerID="{CB9868B9-1B5B-426C-8FF1-1B8DF0E48E37}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Excel - Aeropuertos]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Nombre]"
+                      length="255"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Ciudad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Ciudad]"
+                      length="255"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Ciudad]"
+                      name="Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Pais]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Pais]"
+                      length="255"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Pais]"
+                      name="Pais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[ID_Aeropuerto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[ID_Aeropuerto]"
+                      length="255"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[ID_Aeropuerto]"
+                      name="ID_Aeropuerto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Pais]"
+                      dataType="wstr"
+                      length="255"
+                      name="Pais" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[ID_Aeropuerto]"
+                      dataType="wstr"
+                      length="255"
+                      name="ID_Aeropuerto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[ID_Aeropuerto]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[ID_Aeropuerto]"
+                      name="ID_Aeropuerto" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Ciudad]"
+                      name="Ciudad" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Pais]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Pais]"
+                      name="Pais" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Tabla Aeropuertos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Aeropuerto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].Columns[Converted_ ID_Aeropuerto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Converted_ ID_Aeropuerto"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[ID_Aeropuerto]"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ ID_Aeropuerto]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].Columns[Converted_ Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Converted_ Nombre"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Nombre]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].Columns[Converted_ Ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Converted_ Ciudad"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Ciudad]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].Columns[Converted_ Pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Converted_ Pais"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Pais]"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Pais]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[ID_Aeropuerto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ID_Aeropuerto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Pais" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar Aeropuertos desde Excel.Paths[Data Conversion Output]"
+              endId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Cargar Aeropuertos desde Excel.Paths[Excel Source Output]"
+              endId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Pasajeros desde Excel"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DE6C655C-B908-4BF7-9D82-F6BE786E9800}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar Pasajeros desde Excel"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar Pasajeros desde Excel\Conversion de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Primer_Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Primer_Nombre"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Primer_Nombre]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Segundo_Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Segundo_Nombre"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Segundo_Nombre]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Primer_Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Primer_Apellido"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Primer_Apellido]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Segundo_Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Segundo_Apellido"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Segundo_Apellido]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Telefono]"
+                      cachedDataType="r8"
+                      cachedName="Telefono"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Telefono]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Email"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Direccion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Direccion"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Direccion]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Fecha_Nacimiento]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Fecha_Nacimiento"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Fecha_Nacimiento]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Sexo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sexo"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Sexo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Primer_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Primer_Nombre]"
+                      name="Converted_Primer_Nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Primer_Nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Segundo_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Segundo_Nombre]"
+                      name="Converted_Segundo_Nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Segundo_Nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Primer_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Primer_Apellido]"
+                      name="Converted_Primer_Apellido"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Primer_Apellido]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Segundo_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Segundo_Apellido]"
+                      name="Converted_Segundo_Apellido"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Segundo_Apellido]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Telefono]"
+                      name="Converted_Telefono"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Telefono]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Email]"
+                      name="Converted_Email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Email]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Direccion]"
+                      name="Converted_Direccion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Direccion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Nacimiento]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Nacimiento]"
+                      name="Converted_Fecha_Nacimiento"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Fecha_Nacimiento]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Sexo]"
+                      name="Converted_Sexo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Sexo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel de Pasajeros"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">data$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Connections[OleDbConnection]"
+                  connectionManagerID="{29613C87-242A-4F6C-9801-E31A98420BB7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Excel - Pasajeros]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Primer_Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Primer_Nombre]"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Primer_Nombre]"
+                      name="Primer_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Segundo_Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Segundo_Nombre]"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Segundo_Nombre]"
+                      name="Segundo_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Primer_Apellido]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Primer_Apellido]"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Primer_Apellido]"
+                      name="Primer_Apellido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Segundo_Apellido]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Segundo_Apellido]"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Segundo_Apellido]"
+                      name="Segundo_Apellido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Telefono]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Telefono]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Telefono]"
+                      name="Telefono"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Email]"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Direccion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Direccion]"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Direccion]"
+                      name="Direccion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Fecha_Nacimiento]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Fecha_Nacimiento]"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Fecha_Nacimiento]"
+                      name="Fecha_Nacimiento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Sexo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Sexo]"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].Columns[Sexo]"
+                      name="Sexo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Primer_Nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="Primer_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Segundo_Nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="Segundo_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Primer_Apellido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Primer_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Segundo_Apellido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Segundo_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Telefono]"
+                      dataType="r8"
+                      name="Telefono" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="255"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Direccion]"
+                      dataType="wstr"
+                      length="255"
+                      name="Direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Fecha_Nacimiento]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fecha_Nacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output].ExternalColumns[Sexo]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sexo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Primer_Nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Primer_Nombre]"
+                      name="Primer_Nombre" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Segundo_Nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Segundo_Nombre]"
+                      name="Segundo_Nombre" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Primer_Apellido]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Primer_Apellido]"
+                      name="Primer_Apellido" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Segundo_Apellido]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Segundo_Apellido]"
+                      name="Segundo_Apellido" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Telefono]"
+                      dataType="r8"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Telefono]"
+                      name="Telefono" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Email]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Direccion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Direccion]"
+                      name="Direccion" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Fecha_Nacimiento]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Fecha_Nacimiento]"
+                      name="Fecha_Nacimiento" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Sexo]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[Sexo]"
+                      name="Sexo" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Tabla de Pasajeros"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Pasajero]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Primer_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="Converted_Primer_Nombre"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Nombre]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Primer_Nombre]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Segundo_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="Converted_Segundo_Nombre"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Nombre]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Segundo_Nombre]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Primer_Apellido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="Converted_Primer_Apellido"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Apellido]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Primer_Apellido]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Segundo_Apellido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="Converted_Segundo_Apellido"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Apellido]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Segundo_Apellido]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Telefono]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Converted_Telefono"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Telefono]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Telefono]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Converted_Email"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Email]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Direccion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Converted_Direccion"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Direccion]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Direccion]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Fecha_Nacimiento]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Converted_Fecha_Nacimiento"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Fecha_Nacimiento]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Nacimiento]" />
+                    <inputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].Columns[Converted_Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Converted_Sexo"
+                      externalMetadataColumnId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Sexo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[ID_Pasajero]"
+                      dataType="i4"
+                      name="ID_Pasajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Primer_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Segundo_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Primer_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Segundo_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Telefono" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Fecha_Nacimiento]"
+                      dataType="dbDate"
+                      name="Fecha_Nacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Sexo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar Pasajeros desde Excel.Paths[Data Conversion Output]"
+              endId="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Cargar Pasajeros desde Excel.Paths[Excel Source Output]"
+              endId="Package\Cargar Pasajeros desde Excel\Conversion de datos.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Vuelos desde Excel"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{50FBBF60-C4CA-45AE-9B14-2E5764823608}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar Vuelos desde Excel"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar Vuelos desde Excel\Conversion de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Fecha_Salida]"
+                      cachedDataType="date"
+                      cachedName="Fecha_Salida"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Fecha_Salida]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Hora_Salida]"
+                      cachedDataType="date"
+                      cachedName="Hora_Salida"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Hora_Salida]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Fecha_Llegada]"
+                      cachedDataType="date"
+                      cachedName="Fecha_Llegada"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Fecha_Llegada]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Hora_Llegada]"
+                      cachedDataType="date"
+                      cachedName="Hora_Llegada"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Hora_Llegada]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Aeropuerto_Origen]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Aeropuerto_Origen"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Aeropuerto_Origen]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Aeropuerto_Destino]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Aeropuerto_Destino"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Aeropuerto_Destino]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Salida]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Salida]"
+                      name="Converted_Fecha_Salida"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Fecha_Salida]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Copy of Hora_Salida]"
+                      dataType="dbTime"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Copy of Hora_Salida]"
+                      name="Copy of Hora_Salida"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Hora_Salida]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Llegada]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Llegada]"
+                      name="Converted_Fecha_Llegada"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Fecha_Llegada]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Hora_Llegada]"
+                      dataType="dbTime"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Hora_Llegada]"
+                      name="Converted_Hora_Llegada"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Hora_Llegada]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Aeropuerto_Origen]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Aeropuerto_Origen]"
+                      name="Converted_Aeropuerto_Origen"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Aeropuerto_Origen]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Aeropuerto_Destino]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Aeropuerto_Destino]"
+                      name="Converted_ Aeropuerto_Destino"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Aeropuerto_Destino]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel de Vuelos"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Vuelos$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Connections[OleDbConnection]"
+                  connectionManagerID="{40323AEA-F1F2-47B2-93C5-2BC239CFB631}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Excel - Vuelos]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Fecha_Salida]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Fecha_Salida]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Fecha_Salida]"
+                      name="Fecha_Salida"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Hora_Salida]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Hora_Salida]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Hora_Salida]"
+                      name="Hora_Salida"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Fecha_Llegada]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Fecha_Llegada]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Fecha_Llegada]"
+                      name="Fecha_Llegada"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Hora_Llegada]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Hora_Llegada]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Hora_Llegada]"
+                      name="Hora_Llegada"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Aeropuerto_Origen]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Aeropuerto_Origen]"
+                      length="255"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Aeropuerto_Origen]"
+                      name="Aeropuerto_Origen"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Aeropuerto_Destino]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Aeropuerto_Destino]"
+                      length="255"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].Columns[Aeropuerto_Destino]"
+                      name="Aeropuerto_Destino"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Fecha_Salida]"
+                      dataType="date"
+                      name="Fecha_Salida" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Hora_Salida]"
+                      dataType="date"
+                      name="Hora_Salida" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Fecha_Llegada]"
+                      dataType="date"
+                      name="Fecha_Llegada" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Hora_Llegada]"
+                      dataType="date"
+                      name="Hora_Llegada" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Aeropuerto_Origen]"
+                      dataType="wstr"
+                      length="255"
+                      name="Aeropuerto_Origen" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output].ExternalColumns[Aeropuerto_Destino]"
+                      dataType="wstr"
+                      length="255"
+                      name="Aeropuerto_Destino" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Fecha_Salida]"
+                      dataType="date"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Fecha_Salida]"
+                      name="Fecha_Salida" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Hora_Salida]"
+                      dataType="date"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Hora_Salida]"
+                      name="Hora_Salida" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Fecha_Llegada]"
+                      dataType="date"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Fecha_Llegada]"
+                      name="Fecha_Llegada" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Hora_Llegada]"
+                      dataType="date"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Hora_Llegada]"
+                      name="Hora_Llegada" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Aeropuerto_Origen]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Aeropuerto_Origen]"
+                      name="Aeropuerto_Origen" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Aeropuerto_Destino]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[Aeropuerto_Destino]"
+                      name="Aeropuerto_Destino" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Tabla de Vuelos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Vuelo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].Columns[Converted_Fecha_Salida]"
+                      cachedDataType="dbDate"
+                      cachedName="Converted_Fecha_Salida"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Fecha_Salida]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Salida]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].Columns[Copy of Hora_Salida]"
+                      cachedDataType="dbTime"
+                      cachedName="Copy of Hora_Salida"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Hora_Salida]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Copy of Hora_Salida]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].Columns[Converted_Fecha_Llegada]"
+                      cachedDataType="dbDate"
+                      cachedName="Converted_Fecha_Llegada"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Fecha_Llegada]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Fecha_Llegada]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].Columns[Converted_Hora_Llegada]"
+                      cachedDataType="dbTime"
+                      cachedName="Converted_Hora_Llegada"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Hora_Llegada]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Hora_Llegada]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].Columns[Converted_Aeropuerto_Origen]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Converted_Aeropuerto_Origen"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Aeropuerto_Origen]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Aeropuerto_Origen]" />
+                    <inputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].Columns[Converted_ Aeropuerto_Destino]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Converted_ Aeropuerto_Destino"
+                      externalMetadataColumnId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Aeropuerto_Destino]"
+                      lineageId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Aeropuerto_Destino]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[ID_Vuelo]"
+                      dataType="i4"
+                      name="ID_Vuelo" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Fecha_Salida]"
+                      dataType="dbDate"
+                      name="Fecha_Salida" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Hora_Salida]"
+                      dataType="dbTime2"
+                      name="Hora_Salida"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Fecha_Llegada]"
+                      dataType="dbDate"
+                      name="Fecha_Llegada" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Hora_Llegada]"
+                      dataType="dbTime2"
+                      name="Hora_Llegada"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Aeropuerto_Origen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Aeropuerto_Origen" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Aeropuerto_Destino]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Aeropuerto_Destino" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar Vuelos desde Excel.Paths[Data Conversion Output]"
+              endId="Package\Cargar Vuelos desde Excel\Tabla de Vuelos.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Cargar Vuelos desde Excel\Conversion de datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Cargar Vuelos desde Excel.Paths[Excel Source Output]"
+              endId="Package\Cargar Vuelos desde Excel\Conversion de datos.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Cargar Vuelos desde Excel\Excel de Vuelos.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{468ABC00-F836-417D-93AF-520F248FD748}"
+      DTS:From="Package\Borrar Aeropuertos de la DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Borrar Pasajeros de la DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{2CFA584C-53AD-4A28-AB97-E7627DE17C4D}"
+      DTS:From="Package\Borrar Aerolineas de la DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Borrar Aeropuertos de la DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0B27BCF5-4461-49C3-8A8B-EF934A1CECD6}"
+      DTS:From="Package\Borrar Pasajeros de la DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Cargar Pasajeros desde Excel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{DFABF47F-E68D-4D5C-B58E-7E92FB0B2170}"
+      DTS:From="Package\Borrar Pasajeros de la DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Cargar Aerolineas desde Excel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{7D966D0C-B43C-4492-92B1-1D3E3B8D9B94}"
+      DTS:From="Package\Borrar Vuelos de la DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Borrar Aerolineas de la DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{B0ED6914-35BC-4F4D-91EC-129CDBB11331}"
+      DTS:From="Package\Borrar Pasajeros de la DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Cargar Aeropuertos desde Excel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{D1B07383-D093-46FC-A939-DC42F616DA04}"
+      DTS:From="Package\Borrar Pasajeros de la DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Cargar Vuelos desde Excel" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Borrar Aerolineas de la DB"
+          TopLeft="585.5,107.5" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Borrar Aeropuertos de la DB"
+          TopLeft="585.5,209.5" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Borrar Pasajeros de la DB"
+          TopLeft="585.5,311.5" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Cargar Aerolineas desde Excel"
+          TopLeft="295.5,413.5" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Cargar Aeropuertos desde Excel"
+          TopLeft="585.5,413.5" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Cargar Pasajeros desde Excel"
+          TopLeft="5.5,413.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="700,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="700,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="633.7,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-513.7,60.0000000000001"
+              Start="0,0"
+              End="-513.7,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.7750460971113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.7750460971113"
+                    Point2="0,17.7750460971113"
+                    Point3="-4,17.7750460971113" />
+                  <mssgle:LineSegment
+                    End="-509.7,17.7750460971113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-509.7,17.7750460971113"
+                    Point2="-513.7,17.7750460971113"
+                    Point3="-513.7,21.7750460971113" />
+                  <mssgle:LineSegment
+                    End="-513.7,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="677.9,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-267.9,60.0000000000001"
+              Start="0,0"
+              End="-267.9,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7955534074433" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.7955534074433"
+                    Point2="0,26.7955534074433"
+                    Point3="-4,26.7955534074433" />
+                  <mssgle:LineSegment
+                    End="-263.9,26.7955534074433" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-263.9,26.7955534074433"
+                    Point2="-267.9,26.7955534074433"
+                    Point3="-267.9,30.7955534074433" />
+                  <mssgle:LineSegment
+                    End="-267.9,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="722.1,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.1,60"
+              Start="0,0"
+              End="-22.1,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7955534074432" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.7955534074432"
+                    Point2="0,26.7955534074432"
+                    Point3="-4,26.7955534074432" />
+                  <mssgle:LineSegment
+                    End="-18.1,26.7955534074432" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.1,26.7955534074432"
+                    Point2="-22.1,26.7955534074432"
+                    Point3="-22.1,30.7955534074432" />
+                  <mssgle:LineSegment
+                    End="-22.1,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Borrar Vuelos de la DB"
+          TopLeft="585.5,5.49999999999989" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="700,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Cargar Vuelos desde Excel"
+          TopLeft="875.5,413.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="766.3,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="223.7,60"
+              Start="0,0"
+              End="223.7,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.7750460971113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.7750460971113"
+                    Point2="0,17.7750460971113"
+                    Point3="4,17.7750460971113" />
+                  <mssgle:LineSegment
+                    End="219.7,17.7750460971113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="219.7,17.7750460971113"
+                    Point2="223.7,17.7750460971113"
+                    Point3="223.7,21.7750460971113" />
+                  <mssgle:LineSegment
+                    End="223.7,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargar Aerolineas desde Excel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas"
+          TopLeft="7.50000000000003,209.5" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Cargar Aerolineas desde Excel\Excel Aerolineas"
+          TopLeft="15.5,5.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Cargar Aerolineas desde Excel\Conversion de datos"
+          TopLeft="5.50000000000003,107.5" />
+        <EdgeLayout
+          Id="Package\Cargar Aerolineas desde Excel.Paths[Excel Source Output]"
+          TopLeft="93,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar Aerolineas desde Excel.Paths[Data Conversion Output]"
+          TopLeft="93,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Aerolineas desde Excel\Excel Aerolineas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Cargar Aeropuertos desde Excel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos"
+          TopLeft="397.5,85.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Cargar Aeropuertos desde Excel\Conversion de datos"
+          TopLeft="397.5,188.5" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos"
+          TopLeft="397.5,290.5" />
+        <EdgeLayout
+          Id="Package\Cargar Aeropuertos desde Excel.Paths[Excel Source Output]"
+          TopLeft="485.75,127.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar Aeropuertos desde Excel.Paths[Data Conversion Output]"
+          TopLeft="486.25,230.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Cargar Pasajeros desde Excel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros"
+          TopLeft="549,82.5" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros"
+          TopLeft="547,286.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Cargar Pasajeros desde Excel\Conversion de datos"
+          TopLeft="544.5,184.5" />
+        <EdgeLayout
+          Id="Package\Cargar Pasajeros desde Excel.Paths[Excel Source Output]"
+          TopLeft="632,124.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar Pasajeros desde Excel.Paths[Data Conversion Output]"
+          TopLeft="631.5,226.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Pasajeros desde Excel\Tabla de Pasajeros">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Cargar Vuelos desde Excel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Cargar Vuelos desde Excel\Excel de Vuelos"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Cargar Vuelos desde Excel\Tabla de Vuelos"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Cargar Vuelos desde Excel\Conversion de datos"
+          TopLeft="5.50000000000003,107.5" />
+        <EdgeLayout
+          Id="Package\Cargar Vuelos desde Excel.Paths[Excel Source Output]"
+          TopLeft="93,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar Vuelos desde Excel.Paths[Data Conversion Output]"
+          TopLeft="93,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Vuelos desde Excel\Excel de Vuelos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Vuelos desde Excel\Tabla de Vuelos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
