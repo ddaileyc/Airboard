@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="AirboardETL"
   DTS:PackageType="5"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{11F8A93F-C463-43D1-AC12-4C6AE93F2DFF}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{E60D935D-4A8A-4F2D-9C58-11BF5B3A0D65}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -54,13 +54,29 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Borrar Aeropuertos de la DB"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{2E738FAC-D244-42AE-A860-65849AB0C7CB}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="delete from dbo.Aeropuerto;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DELETE from dbo.Aeropuerto;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Borrar Detalles de Vuelo de la DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7D3E94AD-BCE5-4504-BFE6-985785775A56}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borrar Detalles de Vuelo de la DB"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2E738FAC-D244-42AE-A860-65849AB0C7CB}"
+          SQLTask:SqlStatementSource="DELETE from dbo.DetalleVuelo" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -71,7 +87,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Borrar Pasajeros de la DB"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -87,7 +103,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Borrar Vuelos de la DB"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -999,6 +1015,21 @@
               startId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output]" />
           </paths>
         </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Detalles de Vuelo desde Excel"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2879BCAB-BDF3-4EFD-A214-A1B1F8AB0748}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar Detalles de Vuelo desde Excel"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2432,24 +2463,48 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delay de 3 segundos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9D5CF8C3-4677-4133-80AB-E081CC42A53D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delay de 3 segundos"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2E738FAC-D244-42AE-A860-65849AB0C7CB}"
+          SQLTask:SqlStatementSource="WAITFOR DELAY '00:00:03'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{468ABC00-F836-417D-93AF-520F248FD748}"
-      DTS:From="Package\Borrar Aeropuertos de la DB"
+      DTS:DTSID="{C23BB93B-CA0C-4423-97BC-A2C6350CC6EA}"
+      DTS:From="Package\Borrar Detalles de Vuelo de la DB"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Borrar Pasajeros de la DB" />
+      DTS:To="Package\Borrar Vuelos de la DB" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{2CFA584C-53AD-4A28-AB97-E7627DE17C4D}"
-      DTS:From="Package\Borrar Aerolineas de la DB"
+      DTS:DTSID="{5C46B6A0-1788-4C8D-A331-5A2153807641}"
+      DTS:From="Package\Borrar Vuelos de la DB"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Borrar Aeropuertos de la DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{F9B8248A-4594-4073-B3E6-4FE2989526B5}"
+      DTS:From="Package\Delay de 3 segundos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Cargar Detalles de Vuelo desde Excel" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -2469,11 +2524,11 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
-      DTS:DTSID="{7D966D0C-B43C-4492-92B1-1D3E3B8D9B94}"
-      DTS:From="Package\Borrar Vuelos de la DB"
+      DTS:DTSID="{8C9DB1E7-D748-4699-BF46-2BACDEF9636C}"
+      DTS:From="Package\Borrar Aeropuertos de la DB"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
-      DTS:To="Package\Borrar Aerolineas de la DB" />
+      DTS:To="Package\Borrar Pasajeros de la DB" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
@@ -2490,6 +2545,30 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 6"
       DTS:To="Package\Cargar Vuelos desde Excel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{0B8A5314-C310-4D15-BBF1-24FD1722201A}"
+      DTS:From="Package\Cargar Aerolineas desde Excel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Delay de 3 segundos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{33D83CE7-8325-4FA9-9ACC-E7DB5EEBC92F}"
+      DTS:From="Package\Cargar Vuelos desde Excel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Delay de 3 segundos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{F46D436C-5E18-4FDE-84C7-9F107A02F9ED}"
+      DTS:From="Package\Borrar Detalles de Vuelo de la DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Borrar Aerolineas de la DB" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -2502,101 +2581,65 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="229,42"
+          Size="203,42"
           Id="Package\Borrar Aerolineas de la DB"
-          TopLeft="585.5,107.5" />
+          TopLeft="323.5,107.5" />
         <NodeLayout
-          Size="229,42"
+          Size="212,42"
           Id="Package\Borrar Aeropuertos de la DB"
-          TopLeft="585.5,209.5" />
+          TopLeft="574,209.5" />
         <NodeLayout
-          Size="229,42"
+          Size="199,42"
           Id="Package\Borrar Pasajeros de la DB"
-          TopLeft="585.5,311.5" />
+          TopLeft="580.5,311.5" />
         <NodeLayout
-          Size="229,42"
+          Size="186,42"
+          Id="Package\Borrar Vuelos de la DB"
+          TopLeft="587,107.5" />
+        <NodeLayout
+          Size="221,42"
           Id="Package\Cargar Aerolineas desde Excel"
-          TopLeft="295.5,413.5" />
+          TopLeft="283.5,413.5" />
         <NodeLayout
           Size="229,42"
           Id="Package\Cargar Aeropuertos desde Excel"
-          TopLeft="585.5,413.5" />
+          TopLeft="565.5,413.5" />
         <NodeLayout
-          Size="229,42"
+          Size="217,42"
           Id="Package\Cargar Pasajeros desde Excel"
           TopLeft="5.5,413.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="700,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="700,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Cargar Vuelos desde Excel"
+          TopLeft="855.5,413.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="633.7,353.5">
+          TopLeft="622.7,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-513.7,60.0000000000001"
+              EndConnector="-508.7,60.0000000000001"
               Start="0,0"
-              End="-513.7,52.5000000000001">
+              End="-508.7,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7750460971113" />
+                    End="0,13.8687367678194" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7750460971113"
-                    Point2="0,17.7750460971113"
-                    Point3="-4,17.7750460971113" />
+                    Point1="0,13.8687367678194"
+                    Point2="0,17.8687367678194"
+                    Point3="-4,17.8687367678194" />
                   <mssgle:LineSegment
-                    End="-509.7,17.7750460971113" />
+                    End="-504.7,17.8687367678194" />
                   <mssgle:CubicBezierSegment
-                    Point1="-509.7,17.7750460971113"
-                    Point2="-513.7,17.7750460971113"
-                    Point3="-513.7,21.7750460971113" />
+                    Point1="-504.7,17.8687367678194"
+                    Point2="-508.7,17.8687367678194"
+                    Point3="-508.7,21.8687367678194" />
                   <mssgle:LineSegment
-                    End="-513.7,52.5000000000001" />
+                    End="-508.7,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2607,30 +2650,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="677.9,353.5">
+          TopLeft="660.9,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-267.9,60.0000000000001"
+              EndConnector="-266.9,60.0000000000001"
               Start="0,0"
-              End="-267.9,52.5000000000001">
+              End="-266.9,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.7955534074433" />
+                    End="0,22.8148971650918" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,22.7955534074433"
-                    Point2="0,26.7955534074433"
-                    Point3="-4,26.7955534074433" />
+                    Point1="0,22.8148971650918"
+                    Point2="0,26.8148971650918"
+                    Point3="-4,26.8148971650918" />
                   <mssgle:LineSegment
-                    End="-263.9,26.7955534074433" />
+                    End="-262.9,26.8148971650918" />
                   <mssgle:CubicBezierSegment
-                    Point1="-263.9,26.7955534074433"
-                    Point2="-267.9,26.7955534074433"
-                    Point3="-267.9,30.7955534074433" />
+                    Point1="-262.9,26.8148971650918"
+                    Point2="-266.9,26.8148971650918"
+                    Point3="-266.9,30.8148971650918" />
                   <mssgle:LineSegment
-                    End="-267.9,52.5000000000001" />
+                    End="-266.9,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2641,30 +2684,64 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="722.1,353.5">
+          TopLeft="699.1,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-22.1,60"
+              EndConnector="-19.1,60"
               Start="0,0"
-              End="-22.1,52.5">
+              End="-19.1,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.7955534074432" />
+                    End="0,22.8148971650917" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,22.7955534074432"
-                    Point2="0,26.7955534074432"
-                    Point3="-4,26.7955534074432" />
+                    Point1="0,22.8148971650917"
+                    Point2="0,26.8148971650917"
+                    Point3="-4,26.8148971650917" />
                   <mssgle:LineSegment
-                    End="-18.1,26.7955534074432" />
+                    End="-15.1,26.8148971650917" />
                   <mssgle:CubicBezierSegment
-                    Point1="-18.1,26.7955534074432"
-                    Point2="-22.1,26.7955534074432"
-                    Point3="-22.1,30.7955534074432" />
+                    Point1="-15.1,26.8148971650917"
+                    Point2="-19.1,26.8148971650917"
+                    Point3="-19.1,30.8148971650917" />
                   <mssgle:LineSegment
-                    End="-22.1,52.5" />
+                    End="-19.1,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="737.3,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="219.7,60"
+              Start="0,0"
+              End="219.7,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.8687367678193" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.8687367678193"
+                    Point2="0,17.8687367678194"
+                    Point3="4,17.8687367678194" />
+                  <mssgle:LineSegment
+                    End="215.7,17.8687367678194" />
+                  <mssgle:CubicBezierSegment
+                    Point1="215.7,17.8687367678194"
+                    Point2="219.7,17.8687367678194"
+                    Point3="219.7,21.8687367678194" />
+                  <mssgle:LineSegment
+                    End="219.7,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2674,12 +2751,174 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="229,42"
-          Id="Package\Borrar Vuelos de la DB"
-          TopLeft="585.5,5.49999999999989" />
+          Size="236,42"
+          Id="Package\Borrar Detalles de Vuelo de la DB"
+          TopLeft="562,5.49999999999977" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Delay de 3 segundos"
+          TopLeft="868.5,515.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="394,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="534.833333333333,59.9999999999999"
+              Start="0,0"
+              End="534.833333333333,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6774916013437" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6774916013437"
+                    Point2="0,35.6774916013437"
+                    Point3="4,35.6774916013437" />
+                  <mssgle:LineSegment
+                    End="530.833333333333,35.6774916013437" />
+                  <mssgle:CubicBezierSegment
+                    Point1="530.833333333333,35.6774916013437"
+                    Point2="534.833333333333,35.6774916013437"
+                    Point3="534.833333333333,39.6774916013437" />
+                  <mssgle:LineSegment
+                    End="534.833333333333,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="957,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.1666666666666,60"
+              Start="0,0"
+              End="28.1666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6774916013438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6774916013438"
+                    Point2="0,35.6774916013438"
+                    Point3="4,35.6774916013438" />
+                  <mssgle:LineSegment
+                    End="24.1666666666666,35.6774916013438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.1666666666666,35.6774916013438"
+                    Point2="28.1666666666666,35.6774916013438"
+                    Point3="28.1666666666666,39.6774916013438" />
+                  <mssgle:LineSegment
+                    End="28.1666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="642,47.4999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-217,60.0000000000001"
+              Start="0,0"
+              End="-217,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2424242424243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2424242424243"
+                    Point2="0,24.2424242424243"
+                    Point3="-4,24.2424242424243" />
+                  <mssgle:LineSegment
+                    End="-213,24.2424242424243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-213,24.2424242424243"
+                    Point2="-217,24.2424242424243"
+                    Point3="-217,28.2424242424243" />
+                  <mssgle:LineSegment
+                    End="-217,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="718,47.4999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-38,60"
+              Start="0,0"
+              End="-38,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2424242424242" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2424242424242"
+                    Point2="0,24.2424242424242"
+                    Point3="-4,24.2424242424242" />
+                  <mssgle:LineSegment
+                    End="-34,24.2424242424242" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-34,24.2424242424242"
+                    Point2="-38,24.2424242424242"
+                    Point3="-38,28.2424242424242" />
+                  <mssgle:LineSegment
+                    End="-38,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="680,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="700,47.4999999999999">
+          TopLeft="680,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2700,35 +2939,35 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="229,42"
-          Id="Package\Cargar Vuelos desde Excel"
-          TopLeft="875.5,413.5" />
+          Size="254,42"
+          Id="Package\Cargar Detalles de Vuelo desde Excel"
+          TopLeft="557.272727272727,571.818181818182" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="766.3,353.5">
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="868.5,536.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="223.7,60"
+              EndConnector="-57.2272727272727,56.318181818182"
               Start="0,0"
-              End="223.7,52.5">
+              End="-49.7272727272727,56.318181818182">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7750460971113" />
+                    End="-24.6136363636364,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7750460971113"
-                    Point2="0,17.7750460971113"
-                    Point3="4,17.7750460971113" />
+                    Point1="-24.6136363636364,0"
+                    Point2="-28.6136363636364,0"
+                    Point3="-28.6136363636364,4" />
                   <mssgle:LineSegment
-                    End="219.7,17.7750460971113" />
+                    End="-28.6136363636364,52.318181818182" />
                   <mssgle:CubicBezierSegment
-                    Point1="219.7,17.7750460971113"
-                    Point2="223.7,17.7750460971113"
-                    Point3="223.7,21.7750460971113" />
+                    Point1="-28.6136363636364,52.318181818182"
+                    Point2="-28.6136363636364,56.318181818182"
+                    Point3="-32.6136363636364,56.318181818182" />
                   <mssgle:LineSegment
-                    End="223.7,52.5" />
+                    End="-49.7272727272727,56.318181818182" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2744,7 +2983,7 @@
     design-time-name="Package\Cargar Aerolineas desde Excel">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Cargar Aerolineas desde Excel\Tabla de Aerolineas"
@@ -2776,7 +3015,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2798,7 +3039,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2834,7 +3077,7 @@
     design-time-name="Package\Cargar Aeropuertos desde Excel">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="178,42"
           Id="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos"
@@ -2866,7 +3109,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2888,7 +3133,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2924,7 +3171,7 @@
     design-time-name="Package\Cargar Pasajeros desde Excel">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="166,42"
           Id="Package\Cargar Pasajeros desde Excel\Excel de Pasajeros"
@@ -2956,7 +3203,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2978,7 +3227,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3014,19 +3265,19 @@
     design-time-name="Package\Cargar Vuelos desde Excel">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="175,42"
           Id="Package\Cargar Vuelos desde Excel\Excel de Vuelos"
           TopLeft="5.50000000000001,5.5" />
         <NodeLayout
           Size="175,42"
-          Id="Package\Cargar Vuelos desde Excel\Tabla de Vuelos"
-          TopLeft="5.50000000000003,209.5" />
-        <NodeLayout
-          Size="175,42"
           Id="Package\Cargar Vuelos desde Excel\Conversion de datos"
           TopLeft="5.50000000000003,107.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Cargar Vuelos desde Excel\Tabla de Vuelos"
+          TopLeft="5.50000000000003,209.5" />
         <EdgeLayout
           Id="Package\Cargar Vuelos desde Excel.Paths[Excel Source Output]"
           TopLeft="93,47.5">
@@ -3046,7 +3297,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3068,7 +3321,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -8,7 +8,7 @@
       DTS:ConnectionString="Data Source=den1.mssql7.gear.host;User ID=ddaileydashboard;Initial Catalog=ddaileydashboard;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYoD5fuYHmUSrg3lTDIyemQAAAAACAAAAAAAQZgAAAAEAACAAAAAb7J2S39eIMZ8ZFOKYIigYSz56akDkB4ezO8XfyuKrkwAAAAAOgAAAAAIAACAAAAASBRcSEqWHgl2PfK+2Pn+S39uJ2AC7ktdOnXtB1pLsGIAAAADLd9sNoUBNhiX0v2MtkPCG5vNZFSfIBWxNYb9DiuPgy+AWqVmRganoNGBooexZz4NCcn3/NlVYsdPGrrhJKz7io2g4ksdbwBGqRoTK0J1hA6nmqJjdvlW7MhFbse8GQ+HH1Ni4AgLvM1CrTlopSOgQ6RT+XWQuwkD1ofz+ERXeKkAAAAD8ZbrzXsq6eYrWyQPMLwUu3xdVqNMgzo+w2GpuUVxKLoQ25GRD7FiFzRTDa+XhedlWiALpqgQ03VydAPWNUboJ</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYoD5fuYHmUSrg3lTDIyemQAAAAACAAAAAAAQZgAAAAEAACAAAABVGS1ZjWlp8EwknZo1BZKNi9EHEWRE5dhlFgIuRZv9gwAAAAAOgAAAAAIAACAAAAB5u+PUDJvkm9w+zI3KillTYVBOO0GdxoH3bwqv7j+GboAAAADp4U9w4UOSGMzMYZJjVZh/x1ImpzaXkogZPDoRmQdtfA1uNuO6qtWbeCVpfdlx0Hn+0EWvLPzSY6pFyktHta7ha2B7eGWOA/cssf1VA5hzI1BNdZktLCw9RkdH57FzDm1fzWmMM3Ol+Clh73KsGbMEFawcPaD0OOqbaNmthJ/24UAAAAB3s+yBvI9dxi/Ljnp56+2j7PpftUvwha6tlm7mvTfFxG1/pUDW+ov0E8ox9i/9ju67lvxlTUlvLb+hPh+DNNEp</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
