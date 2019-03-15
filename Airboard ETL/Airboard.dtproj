@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-HCSQMEV</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYoD5fuYHmUSrg3lTDIyemQAAAAACAAAAAAAQZgAAAAEAACAAAACduKwDUabLoiWAGLoG7WSJ+XZJMpdNOBuJC6li2T4y8wAAAAAOgAAAAAIAACAAAAAEUFp8SLExNADKsqPnIHp/EeIZcBnVsaO+abiZ5IZ7KJAAAACOHOtBbsDSyyAeDxwk3PE2QztwC/JLjPvVkkHdY4npfgc6A+IEk7fpoJ52pqT4fu9e4GoAZ6HVWG3Vs9UwQcAfveqiR552PP4T/2xhrLTh4VWvpaKiPnIWYMy/Af4hZU0yzkZpnxe7rL/9HT+1S06YInmnJIZ/qppK6GqZwyqRFLAO3mw3GPJIGhoOcpl7Dn9AAAAAe/+csgTw/Y2XmjIasXMhXTZVncsaF3uLcf8U1MA1BniWfYedf1a7P6A5acvZ0y6A62kcSDQKt6c4GysnYxk1bA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYoD5fuYHmUSrg3lTDIyemQAAAAACAAAAAAAQZgAAAAEAACAAAAAZ1uJS1J84f4NAgcEMibP/f7qWQ2ZOHi0okdlJtkAbZwAAAAAOgAAAAAIAACAAAACorhDRU0i+qE4avej2AR0o9d8UaU4lkDanVIAp6HUfiZAAAACeoC8ZTM/w4rU3XLSqNTAJIzDIFFhWOIrH1pbVNUnMglpXvSzoTAIwnjjYBTk/TWRTQ1Pw+0AHfgYlQz5kwWg+3jSJY0SV9wri6XUULLqYey0umBILOVINEDuePzFuCVMbjlRIRF8/Ugjyme1nt4M/6py0l9ym1BR4WQSskkm50Pnrxs125oxdEYuK35Q5hztAAAAAj9MxaQEjP25cEAXLdEHSyWR0pT8KV9lk5UwrLwa2skEFBZDiLhhJcLH3nL+Vf3WX4CRUsQsl+yvjwDDOQ1dagQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -39,6 +39,8 @@
           <SSIS:ConnectionManager SSIS:Name="DB - Data Warehouse..conmgr" />
           <SSIS:ConnectionManager SSIS:Name="DB - Production.conmgr" />
           <SSIS:ConnectionManager SSIS:Name="Excel - Vuelos.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="Script - DetalleVuello.sql.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="Script - Reservas.sql.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
@@ -582,7 +584,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\ddail\Desktop\XLS_Vuelos.xls;Extended Properties="Excel 8.0;HDR=YES";</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\ddail\Desktop\XLS_Vuelos.xls;Extended Properties="EXCEL 8.0;HDR=YES";</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -688,6 +690,36 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.Script - DetalleVuello sql.ConnectionString">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\Users\ddail\Desktop\ScriptDetalleVuelo.sql</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.Script - Reservas sql.ConnectionString">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\Users\ddail\Desktop\ScriptReservas.sql</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
             <SSIS:PackageMetaData SSIS:Name="AirboardETL.dtsx">
@@ -696,10 +728,10 @@
                 <SSIS:Property SSIS:Name="Name">AirboardETL</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">35</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">51</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{11F8A93F-C463-43D1-AC12-4C6AE93F2DFF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{89D3A559-89C6-419B-B2DB-3F297038404E}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

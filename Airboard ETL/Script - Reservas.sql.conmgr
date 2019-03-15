@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Script - Reservas sql"
+  DTS:DTSID="{A996CD0E-3151-443E-9676-08ABB4EF49B7}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="C:\Users\ddail\Desktop\ScriptReservas.sql" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

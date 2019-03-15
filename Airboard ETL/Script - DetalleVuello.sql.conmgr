@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Script - DetalleVuello sql"
+  DTS:DTSID="{6FD66B55-AB47-46E6-A446-CA45935E2B3F}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="C:\Users\ddail\Desktop\ScriptDetalleVuelo.sql" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
