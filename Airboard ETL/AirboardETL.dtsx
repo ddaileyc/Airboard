@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="AirboardETL"
   DTS:PackageType="5"
-  DTS:VersionBuild="58"
-  DTS:VersionGUID="{F4BC3053-AC11-4151-9F50-1527DA4EE11B}">
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{37F20F44-DB86-45E5-9F6E-5E4477765518}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2638,6 +2638,1731 @@
           SQLTask:SqlStatementSource="Script - Reservas sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Popular DW DB"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{491C867D-858D-4ED9-9694-01AC6A589612}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Popular DW DB"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Popular DW DB\Distribucion de generos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Distribucion de generos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select sexo, cast(count(*) * 100. / sum(count(*)) over () as decimal(5,2)) 'Porcentaje'
+from Pasajero 
+group by sexo;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\Distribucion de generos.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].Columns[sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].ExternalColumns[sexo]"
+                      length="1"
+                      lineageId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].Columns[sexo]"
+                      name="sexo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].Columns[Porcentaje]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].ExternalColumns[Porcentaje]"
+                      lineageId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].Columns[Porcentaje]"
+                      name="Porcentaje"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].ExternalColumns[sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].ExternalColumns[Porcentaje]"
+                      dataType="numeric"
+                      name="Porcentaje"
+                      precision="5"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output].Columns[sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output].Columns[sexo]"
+                      name="sexo" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output].Columns[Porcentaje]"
+                      dataType="numeric"
+                      lineageId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output].Columns[Porcentaje]"
+                      name="Porcentaje"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\DW distribucion generos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW distribucion generos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dwDistribucionGenero]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\DW distribucion generos.Connections[OleDbConnection]"
+                  connectionManagerID="{888E5E66-1765-43FD-B4B6-5965E09BC578}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DB - Data Warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input].Columns[sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="sexo"
+                      externalMetadataColumnId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      lineageId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].Columns[sexo]" />
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input].Columns[Porcentaje]"
+                      cachedDataType="numeric"
+                      cachedName="Porcentaje"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input].ExternalColumns[Porcentaje]"
+                      lineageId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output].Columns[Porcentaje]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input].ExternalColumns[Porcentaje]"
+                      dataType="numeric"
+                      name="Porcentaje"
+                      precision="5"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\DW distribucion generos.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW distribucion generos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW distribucion generos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW distribucion generos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW distribucion generos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\DW estado de vuelos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW estado de vuelos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dwVuelosPorEstado]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\DW estado de vuelos.Connections[OleDbConnection]"
+                  connectionManagerID="{888E5E66-1765-43FD-B4B6-5965E09BC578}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DB - Data Warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input].Columns[Total]"
+                      cachedDataType="i4"
+                      cachedName="Total"
+                      externalMetadataColumnId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Total]"
+                      lineageId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].Columns[Total]" />
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input].Columns[Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      lineageId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].Columns[Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Total]"
+                      dataType="i4"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Estado" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\DW estado de vuelos.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW estado de vuelos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW estado de vuelos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW estado de vuelos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW estado de vuelos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\DW maletas por pasajero"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW maletas por pasajero"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dwCantidadMaletasPasajero]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\DW maletas por pasajero.Connections[OleDbConnection]"
+                  connectionManagerID="{888E5E66-1765-43FD-B4B6-5965E09BC578}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DB - Data Warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Popular DW DB\DW maletas por pasajero.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW maletas por pasajero.Inputs[OLE DB Destination Input].Columns[Promedio]"
+                      cachedDataType="i4"
+                      cachedName="Promedio"
+                      externalMetadataColumnId="Package\Popular DW DB\DW maletas por pasajero.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
+                      lineageId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Output].Columns[Promedio]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW maletas por pasajero.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
+                      dataType="i4"
+                      name="Cantidad" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\DW maletas por pasajero.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Popular DW DB\DW maletas por pasajero.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW maletas por pasajero.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW maletas por pasajero.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW maletas por pasajero.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW maletas por pasajero.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\DW tabla top destinos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW tabla top destinos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dwMapaTopDestinos]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\DW tabla top destinos.Connections[OleDbConnection]"
+                  connectionManagerID="{888E5E66-1765-43FD-B4B6-5965E09BC578}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DB - Data Warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].Columns[Ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Ciudad"
+                      externalMetadataColumnId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Ciudad]" />
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].Columns[Pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Pais"
+                      externalMetadataColumnId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[Pais]"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Pais]" />
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].Columns[Lat]"
+                      cachedDataType="r8"
+                      cachedName="Lat"
+                      externalMetadataColumnId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[LatX]"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Lat]" />
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].Columns[Lon]"
+                      cachedDataType="r8"
+                      cachedName="Lon"
+                      externalMetadataColumnId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[LonY]"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Lon]" />
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].Columns[Total flights]"
+                      cachedDataType="i4"
+                      cachedName="Total flights"
+                      externalMetadataColumnId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[ContadorVuelos]"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Total flights]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[Aeropuerto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Aeropuerto" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Pais" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[LatX]"
+                      dataType="r8"
+                      name="LatX" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[LonY]"
+                      dataType="r8"
+                      name="LonY" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input].ExternalColumns[ContadorVuelos]"
+                      dataType="i4"
+                      name="ContadorVuelos" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\DW tabla top destinos.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW tabla top destinos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW tabla top destinos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW tabla top destinos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\DW tiempo total atrasos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW tiempo total atrasos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dwTiempoVuelosEnRetraso]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\DW tiempo total atrasos.Connections[OleDbConnection]"
+                  connectionManagerID="{888E5E66-1765-43FD-B4B6-5965E09BC578}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DB - Data Warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Popular DW DB\DW tiempo total atrasos.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW tiempo total atrasos.Inputs[OLE DB Destination Input].Columns[Total delay time]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="Total delay time"
+                      externalMetadataColumnId="Package\Popular DW DB\DW tiempo total atrasos.Inputs[OLE DB Destination Input].ExternalColumns[Total]"
+                      lineageId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Output].Columns[Total delay time]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW tiempo total atrasos.Inputs[OLE DB Destination Input].ExternalColumns[Total]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Total" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\DW tiempo total atrasos.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Popular DW DB\DW tiempo total atrasos.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW tiempo total atrasos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW tiempo total atrasos.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW tiempo total atrasos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW tiempo total atrasos.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\DW top Aerolineas"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW top Aerolineas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dwTopAerolineas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\DW top Aerolineas.Connections[OleDbConnection]"
+                  connectionManagerID="{888E5E66-1765-43FD-B4B6-5965E09BC578}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DB - Data Warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].Columns[Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].Columns[ID_Aerolinea]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="ID_Aerolinea"
+                      externalMetadataColumnId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[Aerolinea]"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[ID_Aerolinea]" />
+                    <inputColumn
+                      refId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].Columns[Flight count]"
+                      cachedDataType="i4"
+                      cachedName="Flight count"
+                      externalMetadataColumnId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[Total_de_vuelos]"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[Flight count]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[Aerolinea]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Aerolinea" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input].ExternalColumns[Total_de_vuelos]"
+                      dataType="i4"
+                      name="Total_de_vuelos" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\DW top Aerolineas.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW top Aerolineas.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW top Aerolineas.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\DW top Aerolineas.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\DW top Aerolineas.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\Estado de vuelos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Estado de vuelos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select count(a.ID_Vuelo) 'Total', b.Descripcion 'Status'
+from DetalleVuelo a, EstadoVuelo b
+where a.Estado=b.ID_Estado
+group by b.Descripcion;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\Estado de vuelos.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].Columns[Total]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].ExternalColumns[Total]"
+                      lineageId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].Columns[Total]"
+                      name="Total"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].Columns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      length="15"
+                      lineageId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].ExternalColumns[Total]"
+                      dataType="i4"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Status" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output].Columns[Total]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output].Columns[Total]"
+                      name="Total" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\Maletas por pasajero"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Maletas por pasajero"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select avg(Cantidad_Maletas) 'Promedio' from Reservacion;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\Maletas por pasajero.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Output].Columns[Promedio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Output].ExternalColumns[Promedio]"
+                      lineageId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Output].Columns[Promedio]"
+                      name="Promedio"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Output].ExternalColumns[Promedio]"
+                      dataType="i4"
+                      name="Promedio" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Error Output].Columns[Promedio]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Error Output].Columns[Promedio]"
+                      name="Promedio" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\Tiempo total atrasos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Tiempo total atrasos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select CONCAT (sum(CAST(Comentario as int)) /60, ' Horas') 'Total delay time'
+from DetalleVuelo
+where Estado = 1;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\Tiempo total atrasos.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Output].Columns[Total delay time]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Output].ExternalColumns[Total delay time]"
+                      length="18"
+                      lineageId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Output].Columns[Total delay time]"
+                      name="Total delay time"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Output].ExternalColumns[Total delay time]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="Total delay time" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Error Output].Columns[Total delay time]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      lineageId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Error Output].Columns[Total delay time]"
+                      name="Total delay time" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\Top Aerolineas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Top Aerolineas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select distinct top 3 b.Nombre, a.ID_Aerolinea, count(a.ID_Aerolinea) 'Flight count'
+from DetalleVuelo a, Aerolinea b, Vuelo v
+where a.ID_Aerolinea=b.ID_Aerolinea
+and 
+a.ID_Vuelo=v.ID_Vuelo
+
+/* Funcionalidad por ano 
+and v.Fecha_Salida &gt; '20171231' and v.Fecha_Llegada &lt; '20181231'
+*/
+
+group by b.Nombre, a.ID_Aerolinea
+order by count(a.ID_Aerolinea) desc</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\Top Aerolineas.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      length="45"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[ID_Aerolinea]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].ExternalColumns[ID_Aerolinea]"
+                      length="3"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[ID_Aerolinea]"
+                      name="ID_Aerolinea"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[Flight count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].ExternalColumns[Flight count]"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].Columns[Flight count]"
+                      name="Flight count"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].ExternalColumns[ID_Aerolinea]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ID_Aerolinea" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output].ExternalColumns[Flight count]"
+                      dataType="i4"
+                      name="Flight count" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[ID_Aerolinea]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[ID_Aerolinea]"
+                      name="ID_Aerolinea" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[Flight count]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[Flight count]"
+                      name="Flight count" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Popular DW DB\Top destinos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Top destinos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select distinct top 10 b.ID_Aeropuerto, b.Ciudad, b.Pais, b.Lat, b.Lon, count(a.Aeropuerto_Destino) 'Total flights'
+from Vuelo a, Aeropuerto b
+where a.Aeropuerto_Destino=b.ID_Aeropuerto 
+
+/* Funcionalidad por ano
+and a.Fecha_Salida &gt; '20171231' and a.Fecha_Llegada &lt; '20181231'
+*/
+
+group by b.ID_Aeropuerto,  b.Ciudad, b.Pais, b.Lat, b.Lon
+order by count(a.Aeropuerto_Destino) desc</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Popular DW DB\Top destinos.Connections[OleDbConnection]"
+                  connectionManagerID="{2E738FAC-D244-42AE-A860-65849AB0C7CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[den1.mssql7.gear.host.ddaileydashboard.ddaileydashboard]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[ID_Aeropuerto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[ID_Aeropuerto]"
+                      length="3"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[ID_Aeropuerto]"
+                      name="ID_Aeropuerto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Ciudad]"
+                      length="50"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Ciudad]"
+                      name="Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Pais]"
+                      length="50"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Pais]"
+                      name="Pais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Lat]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Lat]"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Lat]"
+                      name="Lat"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Lon]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Lon]"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Lon]"
+                      name="Lon"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Total flights]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Total flights]"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].Columns[Total flights]"
+                      name="Total flights"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[ID_Aeropuerto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ID_Aeropuerto" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Pais" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Lat]"
+                      dataType="r8"
+                      name="Lat" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Lon]"
+                      dataType="r8"
+                      name="Lon" />
+                    <externalMetadataColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output].ExternalColumns[Total flights]"
+                      dataType="i4"
+                      name="Total flights" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[ID_Aeropuerto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[ID_Aeropuerto]"
+                      name="ID_Aeropuerto" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Ciudad]"
+                      name="Ciudad" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Pais]"
+                      name="Pais" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Lat]"
+                      dataType="r8"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Lat]"
+                      name="Lat" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Lon]"
+                      dataType="r8"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Lon]"
+                      name="Lon" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Total flights]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[Total flights]"
+                      name="Total flights" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Popular DW DB.Paths[OLE DB Source Output]"
+              endId="Package\Popular DW DB\DW estado de vuelos.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Popular DW DB\Estado de vuelos.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Popular DW DB.Paths[OLE DB Source Output1]"
+              endId="Package\Popular DW DB\DW tabla top destinos.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Popular DW DB\Top destinos.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Popular DW DB.Paths[OLE DB Source Output2]"
+              endId="Package\Popular DW DB\DW tiempo total atrasos.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Popular DW DB\Tiempo total atrasos.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Popular DW DB.Paths[OLE DB Source Output3]"
+              endId="Package\Popular DW DB\DW distribucion generos.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Popular DW DB\Distribucion de generos.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Popular DW DB.Paths[OLE DB Source Output4]"
+              endId="Package\Popular DW DB\DW maletas por pasajero.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Popular DW DB\Maletas por pasajero.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Popular DW DB.Paths[OLE DB Source Output5]"
+              endId="Package\Popular DW DB\DW top Aerolineas.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Popular DW DB\Top Aerolineas.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -2680,6 +4405,22 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 12"
       DTS:To="Package\Borrar Vuelos de la DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{3DE0F8C6-6E00-4A3C-9C08-085D102F8408}"
+      DTS:From="Package\Insertar Detalles de Vuelo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\Popular DW DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{3B45D830-C82B-4DCF-B424-9EE2F4D2DFCB}"
+      DTS:From="Package\Insertar Reservaciones"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Popular DW DB" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -2760,402 +4501,54 @@
         <NodeLayout
           Size="203,42"
           Id="Package\Borrar Aerolineas de la DB"
-          TopLeft="14.5,107.5" />
+          TopLeft="556.5,107.5" />
         <NodeLayout
           Size="212,42"
           Id="Package\Borrar Aeropuertos de la DB"
-          TopLeft="283,311.5" />
+          TopLeft="279,311.5" />
         <NodeLayout
           Size="236,42"
           Id="Package\Borrar Detalles de Vuelo de la DB"
-          TopLeft="271,5.5" />
+          TopLeft="540,5.5" />
         <NodeLayout
           Size="199,42"
           Id="Package\Borrar Pasajeros de la DB"
-          TopLeft="289.5,413.5" />
+          TopLeft="285.5,413.5" />
         <NodeLayout
           Size="221,42"
           Id="Package\Borrar Reservaciones de la DB"
-          TopLeft="278.5,107.5" />
+          TopLeft="274.5,107.5" />
         <NodeLayout
           Size="186,42"
           Id="Package\Borrar Vuelos de la DB"
-          TopLeft="296,209.5" />
+          TopLeft="292,209.5" />
         <NodeLayout
           Size="221,42"
           Id="Package\Cargar Aerolineas desde Excel"
-          TopLeft="5.5,617.5" />
+          TopLeft="547.5,617.5" />
         <NodeLayout
           Size="229,42"
           Id="Package\Cargar Aeropuertos desde Excel"
-          TopLeft="274.5,515.5" />
+          TopLeft="270.5,515.5" />
         <NodeLayout
           Size="217,42"
           Id="Package\Cargar Pasajeros desde Excel"
-          TopLeft="551.5,617.5" />
+          TopLeft="5.5,617.5" />
         <NodeLayout
           Size="203,42"
           Id="Package\Cargar Vuelos desde Excel"
-          TopLeft="287.5,617.5" />
+          TopLeft="283.5,617.5" />
         <NodeLayout
           Size="201,42"
           Id="Package\Insertar Detalles de Vuelo"
-          TopLeft="288.5,719.5" />
+          TopLeft="538.5,719.5" />
         <NodeLayout
           Size="186,42"
           Id="Package\Insertar Reservaciones"
-          TopLeft="550,719.5" />
+          TopLeft="292,719.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="427,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-37.9999999999999,60"
-              Start="0,0"
-              End="-37.9999999999999,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.2424242424242" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2424242424242"
-                    Point2="0,24.2424242424242"
-                    Point3="-4,24.2424242424242" />
-                  <mssgle:LineSegment
-                    End="-33.9999999999999,24.2424242424242" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-33.9999999999999,24.2424242424242"
-                    Point2="-37.9999999999999,24.2424242424242"
-                    Point3="-37.9999999999999,28.2424242424242" />
-                  <mssgle:LineSegment
-                    End="-37.9999999999999,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="389,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="660,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="12.6666666666666,60"
-              Start="0,0"
-              End="12.6666666666666,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.6929637526652" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.6929637526652"
-                    Point2="0,35.6929637526652"
-                    Point3="4,35.6929637526652" />
-                  <mssgle:LineSegment
-                    End="8.66666666666663,35.6929637526652" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8.66666666666663,35.6929637526652"
-                    Point2="12.6666666666666,35.6929637526652"
-                    Point3="12.6666666666666,39.6929637526652" />
-                  <mssgle:LineSegment
-                    End="12.6666666666666,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="421.5,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="191.833333333333,60"
-              Start="0,0"
-              End="191.833333333333,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.9735312435126" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25.9735312435126"
-                    Point2="0,29.9735312435126"
-                    Point3="4,29.9735312435126" />
-                  <mssgle:LineSegment
-                    End="187.833333333333,29.9735312435126" />
-                  <mssgle:CubicBezierSegment
-                    Point1="187.833333333333,29.9735312435126"
-                    Point2="191.833333333333,29.9735312435126"
-                    Point3="191.833333333333,33.9735312435126" />
-                  <mssgle:LineSegment
-                    End="191.833333333333,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="389,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="436.75,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="223.25,162"
-              Start="0,0"
-              End="223.25,154.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,51.4280991735537" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,51.4280991735537"
-                    Point2="0,55.4280991735537"
-                    Point3="4,55.4280991735537" />
-                  <mssgle:LineSegment
-                    End="219.25,55.4280991735537" />
-                  <mssgle:CubicBezierSegment
-                    Point1="219.25,55.4280991735537"
-                    Point2="223.25,55.4280991735537"
-                    Point3="223.25,59.4280991735537" />
-                  <mssgle:LineSegment
-                    End="223.25,154.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="341.25,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-225.25,162"
-              Start="0,0"
-              End="-225.25,154.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,51.4280991735538" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,51.4280991735538"
-                    Point2="0,55.4280991735538"
-                    Point3="-4,55.4280991735538" />
-                  <mssgle:LineSegment
-                    End="-221.25,55.4280991735538" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-221.25,55.4280991735538"
-                    Point2="-225.25,55.4280991735538"
-                    Point3="-225.25,59.4280991735538" />
-                  <mssgle:LineSegment
-                    End="-225.25,154.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="389,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="389,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="389,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="356.5,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="64.6666666666667,60"
-              Start="0,0"
-              End="64.6666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.9971161471726" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25.9971161471726"
-                    Point2="0,29.9971161471726"
-                    Point3="4,29.9971161471726" />
-                  <mssgle:LineSegment
-                    End="60.6666666666667,29.9971161471726" />
-                  <mssgle:CubicBezierSegment
-                    Point1="60.6666666666667,29.9971161471726"
-                    Point2="64.6666666666667,29.9971161471726"
-                    Point3="64.6666666666667,33.9971161471726" />
-                  <mssgle:LineSegment
-                    End="64.6666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="116,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="240.833333333333,59.9999999999999"
-              Start="0,0"
-              End="240.833333333333,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.7156959526159" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.7156959526159"
-                    Point2="0,35.7156959526159"
-                    Point3="4,35.7156959526159" />
-                  <mssgle:LineSegment
-                    End="236.833333333333,35.7156959526159" />
-                  <mssgle:CubicBezierSegment
-                    Point1="236.833333333333,35.7156959526159"
-                    Point2="240.833333333333,35.7156959526159"
-                    Point3="240.833333333333,39.7156959526159" />
-                  <mssgle:LineSegment
-                    End="240.833333333333,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="351,47.5">
+          TopLeft="620,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3179,6 +4572,426 @@
                     Point3="-235,28.2424242424242" />
                   <mssgle:LineSegment
                     End="-235,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="385,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="114,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="241.333333333333,59.9999999999999"
+              Start="0,0"
+              End="241.333333333333,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6929637526652" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6929637526652"
+                    Point2="0,35.6929637526652"
+                    Point3="4,35.6929637526652" />
+                  <mssgle:LineSegment
+                    End="237.333333333333,35.6929637526652" />
+                  <mssgle:CubicBezierSegment
+                    Point1="237.333333333333,35.6929637526652"
+                    Point2="241.333333333333,35.6929637526652"
+                    Point3="241.333333333333,39.6929637526652" />
+                  <mssgle:LineSegment
+                    End="241.333333333333,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="352.5,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62.1666666666667,60"
+              Start="0,0"
+              End="62.1666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9735312435126" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.9735312435126"
+                    Point2="0,29.9735312435126"
+                    Point3="4,29.9735312435126" />
+                  <mssgle:LineSegment
+                    End="58.1666666666667,29.9735312435126" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.1666666666667,29.9735312435126"
+                    Point2="62.1666666666667,29.9735312435126"
+                    Point3="62.1666666666667,33.9735312435126" />
+                  <mssgle:LineSegment
+                    End="62.1666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="385,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="337.25,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-223.25,162"
+              Start="0,0"
+              End="-223.25,154.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.4280991735538" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.4280991735538"
+                    Point2="0,55.4280991735538"
+                    Point3="-4,55.4280991735538" />
+                  <mssgle:LineSegment
+                    End="-219.25,55.4280991735538" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-219.25,55.4280991735538"
+                    Point2="-223.25,55.4280991735538"
+                    Point3="-223.25,59.4280991735538" />
+                  <mssgle:LineSegment
+                    End="-223.25,154.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="432.75,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="225.25,162"
+              Start="0,0"
+              End="225.25,154.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.4280991735537" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.4280991735537"
+                    Point2="0,55.4280991735537"
+                    Point3="4,55.4280991735537" />
+                  <mssgle:LineSegment
+                    End="221.25,55.4280991735537" />
+                  <mssgle:CubicBezierSegment
+                    Point1="221.25,55.4280991735537"
+                    Point2="225.25,55.4280991735537"
+                    Point3="225.25,59.4280991735537" />
+                  <mssgle:LineSegment
+                    End="225.25,154.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="385,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="385,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="385,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="417.5,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="189.333333333333,60"
+              Start="0,0"
+              End="189.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9971161471726" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.9971161471726"
+                    Point2="0,29.9971161471726"
+                    Point3="4,29.9971161471726" />
+                  <mssgle:LineSegment
+                    End="185.333333333333,29.9971161471726" />
+                  <mssgle:CubicBezierSegment
+                    Point1="185.333333333333,29.9971161471726"
+                    Point2="189.333333333333,29.9971161471726"
+                    Point3="189.333333333333,33.9971161471726" />
+                  <mssgle:LineSegment
+                    End="189.333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="658,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.1666666666666,60"
+              Start="0,0"
+              End="13.1666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.715695952616" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.715695952616"
+                    Point2="0,35.715695952616"
+                    Point3="4,35.715695952616" />
+                  <mssgle:LineSegment
+                    End="9.16666666666663,35.715695952616" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.16666666666663,35.715695952616"
+                    Point2="13.1666666666666,35.715695952616"
+                    Point3="13.1666666666666,39.715695952616" />
+                  <mssgle:LineSegment
+                    End="13.1666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="696,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-38,60"
+              Start="0,0"
+              End="-38,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2424242424242" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2424242424242"
+                    Point2="0,24.2424242424242"
+                    Point3="-4,24.2424242424242" />
+                  <mssgle:LineSegment
+                    End="-34,24.2424242424242" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-34,24.2424242424242"
+                    Point2="-38,24.2424242424242"
+                    Point3="-38,28.2424242424242" />
+                  <mssgle:LineSegment
+                    End="-38,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Popular DW DB"
+          TopLeft="563.5,821.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="639,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23.8333333333334,60"
+              Start="0,0"
+              End="23.8333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6225425950197" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6225425950197"
+                    Point2="0,35.6225425950197"
+                    Point3="4,35.6225425950197" />
+                  <mssgle:LineSegment
+                    End="19.8333333333334,35.6225425950197" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.8333333333334,35.6225425950197"
+                    Point2="23.8333333333334,35.6225425950197"
+                    Point3="23.8333333333334,39.6225425950197" />
+                  <mssgle:LineSegment
+                    End="23.8333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="385,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="230.166666666667,60"
+              Start="0,0"
+              End="230.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6225425950197" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6225425950197"
+                    Point2="0,35.6225425950197"
+                    Point3="4,35.6225425950197" />
+                  <mssgle:LineSegment
+                    End="226.166666666667,35.6225425950197" />
+                  <mssgle:CubicBezierSegment
+                    Point1="226.166666666667,35.6225425950197"
+                    Point2="230.166666666667,35.6225425950197"
+                    Point3="230.166666666667,39.6225425950197" />
+                  <mssgle:LineSegment
+                    End="230.166666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3288,7 +5101,7 @@
     design-time-name="Package\Cargar Aeropuertos desde Excel">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="178,42"
           Id="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos"
@@ -3320,7 +5133,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3342,7 +5157,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3559,6 +5376,332 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Popular DW DB">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Popular DW DB\Estado de vuelos"
+          TopLeft="15,5.5" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Popular DW DB\DW estado de vuelos"
+          TopLeft="5.5,107.5" />
+        <EdgeLayout
+          Id="Package\Popular DW DB.Paths[OLE DB Source Output]"
+          TopLeft="94.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Popular DW DB\Top destinos"
+          TopLeft="266,5.5" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Popular DW DB\DW tabla top destinos"
+          TopLeft="244,107.5" />
+        <EdgeLayout
+          Id="Package\Popular DW DB.Paths[OLE DB Source Output1]"
+          TopLeft="335.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Popular DW DB\DW tiempo total atrasos"
+          TopLeft="488,107.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Popular DW DB\DW distribucion generos"
+          TopLeft="741.5,107.5" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Popular DW DB\DW maletas por pasajero"
+          TopLeft="996.5,107.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Popular DW DB\DW top Aerolineas"
+          TopLeft="1255.5,107.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Popular DW DB\Tiempo total atrasos"
+          TopLeft="497,5.5" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Popular DW DB\Distribucion de generos"
+          TopLeft="743.5,5.5" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Popular DW DB\Maletas por pasajero"
+          TopLeft="1007,5.49999999999989" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Popular DW DB\Top Aerolineas"
+          TopLeft="1264,5.49999999999989" />
+        <EdgeLayout
+          Id="Package\Popular DW DB.Paths[OLE DB Source Output2]"
+          TopLeft="584.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Popular DW DB.Paths[OLE DB Source Output3]"
+          TopLeft="838.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Popular DW DB.Paths[OLE DB Source Output4]"
+          TopLeft="1095.5,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Popular DW DB.Paths[OLE DB Source Output5]"
+          TopLeft="1338.5,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\Estado de vuelos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\DW estado de vuelos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\Top destinos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\DW tabla top destinos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\DW tiempo total atrasos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\DW distribucion generos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\DW maletas por pasajero">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\DW top Aerolineas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\Tiempo total atrasos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\Distribucion de generos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\Maletas por pasajero">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popular DW DB\Top Aerolineas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
