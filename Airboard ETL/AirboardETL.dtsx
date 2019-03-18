@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="AirboardETL"
   DTS:PackageType="5"
-  DTS:VersionBuild="55"
-  DTS:VersionGUID="{46DC8DB3-CA92-463B-BB80-2E46266ECB44}">
+  DTS:VersionBuild="58"
+  DTS:VersionGUID="{F4BC3053-AC11-4151-9F50-1527DA4EE11B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -568,6 +568,16 @@
                       cachedLength="255"
                       cachedName="Pais"
                       lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Pais]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Lat]"
+                      cachedDataType="r8"
+                      cachedName="Lat"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Lat]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Inputs[Data Conversion Input].Columns[Lon]"
+                      cachedDataType="r8"
+                      cachedName="Lon"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Lon]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -661,6 +671,46 @@
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
                           name="SourceInputColumnLineageID">#{Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Pais]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Lat]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Lat]"
+                      name="Converted_Lat"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Lat]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Lon]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Lon]"
+                      name="Converted_Lon"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Lon]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -787,6 +837,24 @@
                       lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[ID_Aeropuerto]"
                       name="ID_Aeropuerto"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Lat]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Lat]"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Lat]"
+                      name="Lat"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Lon]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Lon]"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].Columns[Lon]"
+                      name="Lon"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -810,6 +878,47 @@
                       dataType="wstr"
                       length="255"
                       name="ID_Aeropuerto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Lat]"
+                      dataType="r8"
+                      name="Lat" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[Lon]"
+                      dataType="r8"
+                      name="Lon" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      name="F7" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[LAT1]"
+                      dataType="r8"
+                      name="LAT1" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[LON1]"
+                      dataType="r8"
+                      name="LON1" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[F11]"
+                      dataType="wstr"
+                      length="255"
+                      name="F11" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[F12]"
+                      dataType="wstr"
+                      length="255"
+                      name="F12" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Output].ExternalColumns[ID1]"
+                      dataType="wstr"
+                      length="255"
+                      name="ID1" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -841,6 +950,16 @@
                       length="255"
                       lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Pais]"
                       name="Pais" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Lat]"
+                      dataType="r8"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Lat]"
+                      name="Lat" />
+                    <outputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Lon]"
+                      dataType="r8"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[Lon]"
+                      name="Lon" />
                     <outputColumn
                       refId="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos.Outputs[Excel Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -926,7 +1045,7 @@
                 <input
                   refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
+                  errorRowDisposition="IgnoreFailure"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
@@ -962,6 +1081,18 @@
                       cachedName="Converted_ Pais"
                       externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Pais]"
                       lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_ Pais]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].Columns[Converted_Lat]"
+                      cachedDataType="r8"
+                      cachedName="Converted_Lat"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Lat]"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Lat]" />
+                    <inputColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].Columns[Converted_Lon]"
+                      cachedDataType="r8"
+                      cachedName="Converted_Lon"
+                      externalMetadataColumnId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Lon]"
+                      lineageId="Package\Cargar Aeropuertos desde Excel\Conversion de datos.Outputs[Data Conversion Output].Columns[Converted_Lon]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -989,6 +1120,14 @@
                       dataType="str"
                       length="50"
                       name="Pais" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Lat]"
+                      dataType="r8"
+                      name="Lat" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Aeropuertos desde Excel\Tabla Aeropuertos.Inputs[OLE DB Destination Input].ExternalColumns[Lon]"
+                      dataType="r8"
+                      name="Lon" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2472,7 +2611,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Insertar Detalles de Vuelo"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2490,7 +2629,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Insertar Reservaciones"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2635,6 +2774,10 @@
           Id="Package\Borrar Pasajeros de la DB"
           TopLeft="289.5,413.5" />
         <NodeLayout
+          Size="221,42"
+          Id="Package\Borrar Reservaciones de la DB"
+          TopLeft="278.5,107.5" />
+        <NodeLayout
           Size="186,42"
           Id="Package\Borrar Vuelos de la DB"
           TopLeft="296,209.5" />
@@ -2658,9 +2801,137 @@
           Size="201,42"
           Id="Package\Insertar Detalles de Vuelo"
           TopLeft="288.5,719.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Insertar Reservaciones"
+          TopLeft="550,719.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="427,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-37.9999999999999,60"
+              Start="0,0"
+              End="-37.9999999999999,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2424242424242" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2424242424242"
+                    Point2="0,24.2424242424242"
+                    Point3="-4,24.2424242424242" />
+                  <mssgle:LineSegment
+                    End="-33.9999999999999,24.2424242424242" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-33.9999999999999,24.2424242424242"
+                    Point2="-37.9999999999999,24.2424242424242"
+                    Point3="-37.9999999999999,28.2424242424242" />
+                  <mssgle:LineSegment
+                    End="-37.9999999999999,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="389,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="660,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.6666666666666,60"
+              Start="0,0"
+              End="12.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6929637526652" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6929637526652"
+                    Point2="0,35.6929637526652"
+                    Point3="4,35.6929637526652" />
+                  <mssgle:LineSegment
+                    End="8.66666666666663,35.6929637526652" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.66666666666663,35.6929637526652"
+                    Point2="12.6666666666666,35.6929637526652"
+                    Point3="12.6666666666666,39.6929637526652" />
+                  <mssgle:LineSegment
+                    End="12.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="421.5,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="191.833333333333,60"
+              Start="0,0"
+              End="191.833333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9735312435126" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.9735312435126"
+                    Point2="0,29.9735312435126"
+                    Point3="4,29.9735312435126" />
+                  <mssgle:LineSegment
+                    End="187.833333333333,29.9735312435126" />
+                  <mssgle:CubicBezierSegment
+                    Point1="187.833333333333,29.9735312435126"
+                    Point2="191.833333333333,29.9735312435126"
+                    Point3="191.833333333333,33.9735312435126" />
+                  <mssgle:LineSegment
+                    End="191.833333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="389,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2793,6 +3064,28 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="389,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
           TopLeft="356.5,659.5">
           <EdgeLayout.Curve>
@@ -2886,160 +3179,6 @@
                     Point3="-235,28.2424242424242" />
                   <mssgle:LineSegment
                     End="-235,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="186,42"
-          Id="Package\Insertar Reservaciones"
-          TopLeft="550,719.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="660,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="12.6666666666666,60"
-              Start="0,0"
-              End="12.6666666666666,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.6929637526652" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.6929637526652"
-                    Point2="0,35.6929637526652"
-                    Point3="4,35.6929637526652" />
-                  <mssgle:LineSegment
-                    End="8.66666666666663,35.6929637526652" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8.66666666666663,35.6929637526652"
-                    Point2="12.6666666666666,35.6929637526652"
-                    Point3="12.6666666666666,39.6929637526652" />
-                  <mssgle:LineSegment
-                    End="12.6666666666666,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="421.5,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="191.833333333333,60"
-              Start="0,0"
-              End="191.833333333333,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.9735312435126" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25.9735312435126"
-                    Point2="0,29.9735312435126"
-                    Point3="4,29.9735312435126" />
-                  <mssgle:LineSegment
-                    End="187.833333333333,29.9735312435126" />
-                  <mssgle:CubicBezierSegment
-                    Point1="187.833333333333,29.9735312435126"
-                    Point2="191.833333333333,29.9735312435126"
-                    Point3="191.833333333333,33.9735312435126" />
-                  <mssgle:LineSegment
-                    End="191.833333333333,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="221,42"
-          Id="Package\Borrar Reservaciones de la DB"
-          TopLeft="278.5,107.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="427,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-37.9999999999999,60"
-              Start="0,0"
-              End="-37.9999999999999,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.2424242424242" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2424242424242"
-                    Point2="0,24.2424242424242"
-                    Point3="-4,24.2424242424242" />
-                  <mssgle:LineSegment
-                    End="-33.9999999999999,24.2424242424242" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-33.9999999999999,24.2424242424242"
-                    Point2="-37.9999999999999,24.2424242424242"
-                    Point3="-37.9999999999999,28.2424242424242" />
-                  <mssgle:LineSegment
-                    End="-37.9999999999999,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="389,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="389,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3149,7 +3288,7 @@
     design-time-name="Package\Cargar Aeropuertos desde Excel">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="178,42"
           Id="Package\Cargar Aeropuertos desde Excel\Excel de Aeropuertos"
@@ -3181,9 +3320,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3205,9 +3342,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
